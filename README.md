@@ -32,5 +32,9 @@ This repository contains a collection of C++ code examples ranging from basic to
 **Description**: Checks if a number is an Armstrong number.
 - [Link to AmstrongNo.cpp](AmstrongNo.cpp)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2f841c65c092149f4646fbb1a55eb16c5428688a
 ## Conclusion
 Feel free to explore the code and modify it for your learning!
