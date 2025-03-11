@@ -115,6 +115,7 @@ int main()
     l.push_back(4);
     l.push_back(5);
     l.print_list();
+    cout << "Searching the files in the list" << endl;
     l.Serach(3);
     l.Serach(6);
     l.pop_front();
@@ -123,5 +124,6 @@ int main()
     l.print_list();
     l.push_front(0);
     l.print_list();
+
     return 0;
 }
