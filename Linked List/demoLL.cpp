@@ -44,7 +44,20 @@ public:
         }
         cout << "NULL" << endl;
     }
-
+    void Serach(int key)
+    {
+        Node *temp = head;
+        while (temp != NULL)
+        {
+            if (temp->data == key)
+            {
+                cout << "Key found" << endl;
+                return;
+            }
+            temp = temp->next;
+        }
+        cout << "Key not found" << endl;
+    }
     void pop_front()
     {
         if (head == NULL)
@@ -72,13 +85,11 @@ public:
             Node *temp = head;
             while (temp->next != tail)
             {
-                temp=temp->next;
-
+                temp = temp->next;
             }
             delete tail;
             tail = temp;
             tail->next = NULL;
-            
         }
     }
     void push_front(int value)
