@@ -1,76 +1,78 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-class CircularQueue {
+#define MAX 100 // Maximum queue size
+
+class Queue
+{
 private:
-    int front, rear, size, capacity;
-    int *arr;
+    int arr[MAX]; // Array to store queue elements
+    int front, rear;
 
 public:
-    CircularQueue(int cap) {
-        capacity = cap;
-        arr = new int[capacity];
-        front = -1;
+    Queue()
+    {
+        front = -1; // Initialize front and rear
         rear = -1;
-        size = 0;
     }
 
-    void push(int x) {
-        if (size == capacity) {
+    void push(int x)
+    {
+        if (rear == MAX - 1)
+        {
             cout << "Queue is full" << endl;
             return;
         }
-        if (front == -1) front = 0;  // Set front for first element
+        if (front == -1)
+            front = 0; // Set front for first element
 
-        rear = (rear + 1) % capacity;  // Circular increment
-        arr[rear] = x;
-        size++;
+        arr[++rear] = x; // Insert element at rear
     }
 
-    void pop() {
-        if (size == 0) {
+    void pop()
+    {
+        if (front == -1 || front > rear)
+        {
             cout << "Queue is empty" << endl;
             return;
         }
-        front = (front + 1) % capacity;  // Circular increment
-        size--;
+        front++; // Move front pointer forward
     }
 
-    int peek() {
-        if (size == 0) {
+    int peek()
+    {
+        if (front == -1 || front > rear)
+        {
             cout << "Queue is empty" << endl;
             return -1;
         }
-        return arr[front];
+        return arr[front]; // Return front element
     }
 
-    bool isEmpty() {
-        return size == 0;
-    }
-    
-    ~CircularQueue() {
-        delete[] arr;  // Free memory
+    bool isEmpty()
+    {
+        return front == -1 || front > rear;
     }
 };
 
-int main() {
-    CircularQueue q(5);  // Queue of size 5
-    
+int main()
+{
+    Queue q;
+
     q.push(1);
     q.push(2);
     q.push(3);
-    
+
     cout << q.peek() << endl; // Output: 1
     q.pop();
-    
+
     cout << q.peek() << endl; // Output: 2
     q.pop();
-    
+
     cout << q.peek() << endl; // Output: 3
     q.pop();
-    
+
     cout << q.isEmpty() << endl; // Output: 1 (true)
-    
+
     return 0;
 }
-
