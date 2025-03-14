@@ -23,3 +23,5 @@ int main()
     cout << "Size of the queue is " << q.size() << endl;
     return 0;
 }
+// Output
+// Size of the queue is 5
