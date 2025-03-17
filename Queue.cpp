@@ -89,7 +89,6 @@ int main()
 //     q.push(2);
 //     q.push(3);
 //     q.push(4);
-//      }
 //     cout << "Size of the queue is " << q.size() << endl;
 //     cout << "Front element of the queue is " << q.front() << endl;
 //     cout << "Back element of the queue is " << q.back() << endl;
