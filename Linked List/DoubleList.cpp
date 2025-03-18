@@ -2,11 +2,11 @@
 using namespace std;
 class Node
 {
+public:
     int data;
     Node *next;
     Node *prev;
 
-public:
     Node(int data, Node *next, Node *prev)
     {
         data = data;
@@ -32,18 +32,22 @@ public:
     {
         head = tail = nullptr;
     }
-    void printll(){
-        Node *temp=head;
-        while(temp!=nullptr){
-            cout<<temp->data<<" ";
-            temp=temp->next;
+    void printll()
+    {
+        Node *temp = head;
+        while (temp != nullptr)
+        {
+            cout << temp->data << " ";
+            temp = temp->next;
         }
-
+        cout << "->NULL" << endl;
     }
 };
 int main()
 {
     vector<int> v = {1, 2, 3, 4, 5};
+    Node *head = new Node(v[0]);
+    Node *temp = head;
 
-    printll();
+    printll(head);
 }
