@@ -11,7 +11,7 @@ public:
         next = NULL;
     }
 };
-class List
+class List 
 {
     Node *head;
     Node *tail;
