@@ -50,4 +50,6 @@ int main()
     Node *temp = head;
 
     printll(head);
+    printll(head);
+    printll(head);
 }
