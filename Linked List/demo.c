@@ -31,11 +31,13 @@ void pushEnd(struct Node **head, int data)
 
     while (temp->next != NULL)
     {
-        
+
         temp = temp->next;
     }
     temp->next = newNode;
 }
+
+
 
 void print(struct Node *head)
 {
