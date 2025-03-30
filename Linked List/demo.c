@@ -37,7 +37,9 @@ void pushEnd(struct Node **head, int data)
     temp->next = newNode;
 }
 
-
+void Push()
+{
+}
 
 void print(struct Node *head)
 {
