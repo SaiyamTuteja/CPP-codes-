@@ -39,9 +39,7 @@ void pushEnd(struct Node **head, int data)
 
 void Push()
 {
-    Node *newNode = createNode(data)
-    {
-    }
+   
 }
 
 void print(struct Node *head)
