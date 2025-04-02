@@ -38,11 +38,8 @@ void pushEnd(struct Node **head, int data)
 }
 
 void Push()
-{
-   
-}
 
-void print(struct Node *head)
+    void print(struct Node *head)
 {
     struct Node *temp = head;
     while (temp != NULL)
