@@ -24,17 +24,28 @@ public:
     }
     void enQueue(int data)
     {
+        Node *newNode = new Node(data);
+
         if (empty())
         {
-            cout << "Queue is full";
+            head = tail = newNode;
         }
         else
         {
-           
+            tail->next = newNode;
+            tail = newNode;
         }
     }
     void dequeue()
     {
+        if (empty())
+        {
+            cout << "LL is empty";
+        }
+
+        Node *temp = head;
+        head = head->next;
+        delete (temp);
     }
     int front()
     {
