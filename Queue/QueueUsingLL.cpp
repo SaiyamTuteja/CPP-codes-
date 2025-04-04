@@ -8,7 +8,7 @@ public:
     Node *next;
     Node(int val)
     {
-        val = data;
+        data = val;
         next = NULL;
     }
 };
@@ -41,6 +41,7 @@ public:
         if (empty())
         {
             cout << "LL is empty";
+            return;
         }
 
         Node *temp = head;
@@ -49,6 +50,11 @@ public:
     }
     int front()
     {
+        if (empty())
+        {
+            cout << "LL is empty";
+            return -1;
+        }
         return head->data;
     }
     bool empty()
@@ -58,5 +64,16 @@ public:
 };
 int main()
 {
+    Queue q;
+    q.enQueue(10);
+    q.enQueue(20);
+    q.enQueue(30);
+    q.enQueue(40);
+    while (!q.empty())
+    {
+        cout << q.front() << " ";
+        q.dequeue();
+    }
+    cout << endl;
     return 0;
 }
