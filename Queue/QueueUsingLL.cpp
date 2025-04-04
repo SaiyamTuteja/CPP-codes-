@@ -45,14 +45,15 @@ public:
 
         Node *temp = head;
         head = head->next;
-        delete (temp);
+        delete temp;
     }
     int front()
     {
-        return
+        return head->data;
     }
     bool empty()
     {
+        return head == NULL;
     }
 };
 int main()
