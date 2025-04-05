@@ -84,6 +84,7 @@ int main()
     q.push(10);
     q.push(20);
     q.push(30);
+    q.emplace(80);
     q.push(40);
     while (!q.empty())
     {
