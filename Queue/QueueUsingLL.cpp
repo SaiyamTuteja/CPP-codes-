@@ -1,17 +1,17 @@
 #include <bits/stdc++.h>
 #include <queue>
 using namespace std;
-class Node
-{
-public:
-    int data;
-    Node *next;
-    Node(int val)
-    {
-        data = val;
-        next = NULL;
-    }
-};
+// class Node
+// {
+// public:
+//     int data;
+//     Node *next;
+//     Node(int val)
+//     {
+//         data = val;
+//         next = NULL;
+//     }
+// };
 // class Queue
 // {
 //     Node *head;
@@ -78,3 +78,18 @@ public:
 //     return 0;
 // }
 
+int main()
+{
+    queue<int> q;
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    q.push(40);
+    while (!q.empty())
+    {
+        cout << q.front() << " ";
+        q.pop();
+    }
+    cout << endl;
+    return 0;
+}
