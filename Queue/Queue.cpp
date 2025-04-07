@@ -110,7 +110,6 @@ int main()
 // 1 2 3 4 5
 // Size of the queue is 0
 // In the above code, we have used the queue STL to implement a queue. The queue STL is a container adapter that gives the programmer the functionality of a queue. The queue STL is a FIFO (First In First Out) data structure. The queue STL is a part of the C++ Standard Template Library (STL). The queue STL is implemented using the deque STL. The queue STL provides the following member functions:
-//
 // push(x): Adds an element x to the back of the queue.
 // pop(): Removes the front element of the queue.
 // front(): Returns the front element of the queue.
