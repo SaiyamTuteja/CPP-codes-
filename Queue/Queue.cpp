@@ -118,6 +118,3 @@ int main()
 // size(): Returns the number of elements in the queue.
 // empty(): Returns true if the queue is empty, otherwise false.
 // The queue STL is a very useful data structure that is used in many applications. The queue STL is very efficient and easy to use. The queue STL is a very powerful tool that can be used to solve many problems. The queue STL is a very important part of the C++ Standard Template Library (STL).
-
-
-
