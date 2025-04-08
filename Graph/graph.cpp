@@ -9,6 +9,9 @@ struct Node
 void preOrder(struct Node *rt, int value)
 {
 }
+void postOrder(struct Node *rt, int value)
+{
+}
 int main()
 {
     return 0;
