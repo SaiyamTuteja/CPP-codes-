@@ -12,6 +12,11 @@ void preOrder(struct Node *rt, int value)
 void postOrder(struct Node *rt, int value)
 {
 }
+void inOrder(struct Node *rt, int value)
+{
+    rt->data = value;
+    rt->left;
+}
 int main()
 {
     return 0;
