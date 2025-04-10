@@ -18,8 +18,9 @@ void postOrder(struct Node *rt)
 }
 void inOrder(struct Node *rt, int value)
 {
-    rt->data = value;
-    rt->left;
+    postOrder(rt->left);
+    printf("%d \n", rt->data);
+    postOrder(rt->right);
 }
 int main()
 {
