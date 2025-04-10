@@ -8,6 +8,9 @@ struct Node
 };
 void preOrder(struct Node *rt, int value)
 {
+    printf("%d \n", rt->data);
+    postOrder(rt->left);
+    postOrder(rt->right);
 }
 void postOrder(struct Node *rt)
 {
