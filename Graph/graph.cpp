@@ -9,11 +9,12 @@ struct Node
 void preOrder(struct Node *rt, int value)
 {
 }
-void postOrder(struct Node *rt, int value)
+void postOrder(struct Node *rt)
 {
-    rt->data = value;
-    rt->left;
-    rt->right;
+
+    postOrder(rt->left);
+    postOrder(rt->right);
+    printf("%d \n", rt->data);
 }
 void inOrder(struct Node *rt, int value)
 {
