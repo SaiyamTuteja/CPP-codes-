@@ -6,6 +6,12 @@ struct Node
     Node *left = NULL;
     Node *right = NULL;
 };
+struct Node *CreateNode(struct Node *root, int data)
+{
+    struct Node *right = NULL;
+    int data;
+    struct Node *left = NULL;
+}
 void preOrder(struct Node *rt)
 {
     printf("%d \n", rt->data);
