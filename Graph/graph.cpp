@@ -6,7 +6,7 @@ struct Node
     Node *left = NULL;
     Node *right = NULL;
 };
-void preOrder(struct Node *rt, int value)
+void preOrder(struct Node *rt)
 {
     printf("%d \n", rt->data);
     postOrder(rt->left);
@@ -19,7 +19,7 @@ void postOrder(struct Node *rt)
     postOrder(rt->right);
     printf("%d \n", rt->data);
 }
-void inOrder(struct Node *rt, int value)
+void inOrder(struct Node *rt)
 {
     postOrder(rt->left);
     printf("%d \n", rt->data);
@@ -28,5 +28,8 @@ void inOrder(struct Node *rt, int value)
 int main()
 {
     struct Node *root = NULL;
+    inOrder(root);
+    preOrder(root);
+    postOrder(root);
     return 0;
 }
