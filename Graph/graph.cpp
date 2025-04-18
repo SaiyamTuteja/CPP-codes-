@@ -11,6 +11,7 @@ struct Node *CreateNode(struct Node *root, int data)
     struct Node *right = NULL;
     int data;
     struct Node *left = NULL;
+    return root;
 }
 void preOrder(struct Node *rt)
 {
