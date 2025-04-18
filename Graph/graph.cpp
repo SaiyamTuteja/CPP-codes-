@@ -27,5 +27,6 @@ void inOrder(struct Node *rt, int value)
 }
 int main()
 {
+    struct Node *root = NULL;
     return 0;
 }
