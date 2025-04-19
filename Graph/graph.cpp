@@ -8,13 +8,13 @@ struct Node
 };
 struct Node *CreateNode(struct Node *root, int data)
 {
-
     struct Node *right = NULL;
     int data;
     struct Node *left = NULL;
     return root;
-
-    
+}
+struct Node *root
+{
 }
 void preOrder(struct Node *rt)
 {
@@ -38,6 +38,7 @@ void inOrder(struct Node *rt)
 int main()
 {
     struct Node *root = NULL;
+
     inOrder(root);
     preOrder(root);
     postOrder(root);
