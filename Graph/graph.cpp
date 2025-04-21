@@ -13,9 +13,7 @@ struct Node *CreateNode(struct Node *root, int data)
     struct Node *left = NULL;
     return root;
 }
-struct Node *root
-{
-}
+
 void preOrder(struct Node *rt)
 {
     printf("%d \n", rt->data);
