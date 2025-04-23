@@ -118,7 +118,7 @@ public:
         }
         return root;
     }
-};
+}; 
 int main()
 {
     BST tree;
