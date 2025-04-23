@@ -68,6 +68,6 @@ int main()
     cout << "\nPostorder Traversal: ";
     postOrder(root);
     cout << endl;
-
+    cout << "program ended ";
     return 0;
 }
