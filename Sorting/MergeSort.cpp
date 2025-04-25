@@ -8,6 +8,7 @@ void merge(int low, int mid, int high, vector<int> &arr)
     vector<int> temp1(len1), temp2(len2);
     while (len1 <= mid && len2 <= high)
     {
+        
     }
     while (len1 <= mid)
     {
