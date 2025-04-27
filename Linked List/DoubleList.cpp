@@ -32,7 +32,7 @@ public:
     {
         head = tail = nullptr;
     }
-    void printll()
+    void printll(Node *head)
     {
         Node *temp = head;
         while (temp != nullptr)
@@ -46,8 +46,10 @@ public:
 int main()
 {
     vector<int> v = {1, 2, 3, 4, 5};
+    List l;
     Node *head = new Node(v[0]);
     Node *temp = head;
 
-    printll(head);
+    l.printll(head);
+    return 0;
 }

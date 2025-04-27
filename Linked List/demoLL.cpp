@@ -105,6 +105,30 @@ public:
             head = newNode;
         }
     }
+    void push_position(int data, int pos)
+    {
+        int curr_pos = 1;
+        Node *newNode = new Node(data);
+        Node *temp = head;
+        if (pos == 1)
+        {
+            push_front(data);
+            return;
+        }
+        while (temp != nullptr && curr_pos < pos - 1)
+        {
+            temp = temp->next;
+            curr_pos++;
+        }
+        if (temp == nullptr)
+        {
+            cout << "OUt of bound ";
+            return;
+        }
+        newNode->next = temp->next;
+        temp->next = newNode;
+        return;
+    }
 };
 int main()
 {
@@ -122,8 +146,9 @@ int main()
     l.print_list();
     l.pop_back();
     l.print_list();
-    l.push_front(0);
+    l.push_front(100);
     l.print_list();
-
+    l.push_position(12, 3);
+    l.print_list();
     return 0;
 }
