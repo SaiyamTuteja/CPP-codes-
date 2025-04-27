@@ -36,6 +36,31 @@ void pushEnd(struct Node **head, int data)
     }
     temp->next = newNode;
 }
+void push_pos(struct Node **head, int data, int pos)
+{
+    struct Node *newNode = createNode(data);
+    struct Node *temp = *head;
+    int curr_pos = 1;
+    if (pos == 1)
+    {
+        pushStart(head, data);
+        return;
+    }
+    while (temp != NULL && curr_pos < pos - 1)
+    {
+        temp = temp->next;
+        curr_pos++;
+    }
+    if (temp == NULL)
+    {
+        printf("OUT OF BOUND ");
+        return;
+    }
+
+    newNode->next = temp->next;
+    temp->next = newNode;
+    return;
+}
 
 void print(struct Node *head)
 {
@@ -45,7 +70,7 @@ void print(struct Node *head)
         printf("%d ->", temp->data);
         temp = temp->next;
     }
-    printf("NULL");
+    printf("NULL\n");
 }
 int main()
 {
@@ -59,5 +84,7 @@ int main()
     print(head);
     // print(head);
     // print(head);
+    push_pos(&head, 50, 3);
+    print(head);
     return 0;
 }
