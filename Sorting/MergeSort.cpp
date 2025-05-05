@@ -2,21 +2,38 @@
 using namespace std;
 void merge(int low, int mid, int high, vector<int> &arr)
 {
-    int len1 = low + mid;
-    int len2 = high - mid + 1;
+    vector<int> temp;
+    int left = low;
+    int right = mid + 1;
 
-    vector<int> temp1(len1), temp2(len2);
-    while (len1 <= mid && len2 <= high)
-    {
-        
+    while (left <= mid && right <= high) {
+        if (arr[left] <= arr[right]) {
+            temp.push_back(arr[left]);
+            left++;
+        } else {
+            temp.push_back(arr[right]);
+            right++;
+        }
     }
-    while (len1 <= mid)
-    {
+
+    // Copy remaining elements from left subarray
+    while (left <= mid) {
+        temp.push_back(arr[left]);
+        left++;
     }
-    while (len2 <= high)
-    {
+
+    // Copy remaining elements from right subarray
+    while (right <= high) {
+        temp.push_back(arr[right]);
+        right++;
+    }
+
+    // Copy back to original array
+    for (int i = 0; i < temp.size(); i++) {
+        arr[low + i] = temp[i];
     }
 }
+
 void mergeSort(int low, int high, vector<int> &arr)
 {
     int mid = low + (high - low) / 2;
@@ -30,4 +47,19 @@ void mergeSort(int low, int high, vector<int> &arr)
 }
 int main()
 {
+    vector<int> arr = {9, 4, 7, 6, 3, 1, 5}  ;
+    int n = 7;
+
+    cout << "Before Sorting Array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " "  ;
+    }
+    cout << endl;
+    mergeSort( 0, n - 1,arr);
+    cout << "After Sorting Array: " << endl;
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " "  ;
+    }
+    cout << endl;
+    return 0 ;
 }
