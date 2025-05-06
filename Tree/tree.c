@@ -28,7 +28,7 @@ struct Node *insertNode(struct Node *root, int data)
     struct Node *newNode = createNode(data);
     if(root==NULL){
         newNode->data=data;
-        newNode->left=left
+        newNode->left;
     }
 }
 int main()

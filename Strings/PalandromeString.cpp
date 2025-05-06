@@ -3,8 +3,8 @@ using namespace std;
 
 void validPalindrome(string str)
 {
-    string rev = str;                // Make a copy
-    reverse(rev.begin(), rev.end()); // Reverse the copy
+    string rev = str;              
+    reverse(rev.begin(), rev.end()); 
     if (str == rev)
     {
         cout << "Yes, it's a palindrome." << endl;
