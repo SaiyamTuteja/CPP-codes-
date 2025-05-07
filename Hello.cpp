@@ -1,8 +1,12 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-// This is a simple program to print Hello, World! on the screen.
-int main()
-{
-    cout << "Hello, World!";
-    return 0;
+#define size 20
+int arr[size];
+int top =-1;
+
+int main(){
+
+    
+    return 0 ;
+
 }
