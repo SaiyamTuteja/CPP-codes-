@@ -23,6 +23,8 @@ int main()
         s.push(arr[i]);
     }
 
+
+    
     // print
     for (int val : ans)
     {
