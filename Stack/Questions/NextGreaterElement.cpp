@@ -24,7 +24,10 @@ int main()
     }
 
 
+
     
+
+
     // print
     for (int val : ans)
     {
