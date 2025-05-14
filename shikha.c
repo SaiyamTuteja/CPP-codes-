@@ -1,16 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <limits.h>
 #include <stdbool.h>
 #include <ctype.h>
-#include <time.h>
 
 #define MAX 100
 #define NUM_HOSPITALS 5
 #define NUM_AMBULANCES 5
 #define MAX_NAME_LENGTH 50
 
-// ----------------------------- GRAPH STRUCTURE -----------------------------
+// ----------------------------- STRUCTURE DECLARATIONS -----------------------------
+struct Location
+{
+    int node;
+    char name[MAX_NAME_LENGTH];
+};
+
 struct AdjListNode
 {
     int dest;
@@ -26,22 +32,75 @@ struct AdjList
 struct Graph
 {
     int V;
+    struct Location *locations;
     struct AdjList *array;
 };
 
-struct AdjListNode *newAdjListNode(int dest, int weight)
+struct MinHeapNode
 {
-    struct AdjListNode *newNode = (struct AdjListNode *)malloc(sizeof(struct AdjListNode));
-    newNode->dest = dest;
-    newNode->weight = weight;
-    newNode->next = NULL;
-    return newNode;
-}
+    int v;
+    int dist;
+};
 
-struct Graph *createGraph(int V)
+struct MinHeap
+{
+    int size;
+    int capacity;
+    int *pos;
+    struct MinHeapNode **array;
+};
+
+struct Hospital
+{
+    int id;
+    char name[MAX_NAME_LENGTH];
+    char city[MAX_NAME_LENGTH];
+    int distance;
+    int availableBeds;
+    int availableDoctors;
+    struct Hospital *left;
+    struct Hospital *right;
+};
+
+// ----------------------------- FUNCTION PROTOTYPES -----------------------------
+struct Graph *createGraph(int V, struct Location *locations);
+void addEdge(struct Graph *graph, int src, int dest, int weight);
+struct AdjListNode *newAdjListNode(int dest, int weight);
+struct MinHeapNode *newMinHeapNode(int v, int dist);
+struct MinHeap *createMinHeap(int capacity);
+void swapMinHeapNode(struct MinHeapNode **a, struct MinHeapNode **b);
+void minHeapify(struct MinHeap *minHeap, int idx);
+int isEmpty(struct MinHeap *minHeap);
+struct MinHeapNode *extractMin(struct MinHeap *minHeap);
+void decreaseKey(struct MinHeap *minHeap, int v, int dist);
+bool isInMinHeap(struct MinHeap *minHeap, int v);
+void dijkstra(struct Graph *graph, int src, int dist[]);
+struct Hospital *newHospitalNode(int id, const char *name, const char *city, int distance, int beds, int doctors);
+struct Hospital *insertHospital(struct Hospital *root, int id, const char *name, const char *city, int distance, int beds, int doctors);
+struct Hospital *findNearestAvailableHospital(struct Hospital *root);
+void clearScreen();
+void printHeader();
+void printFooter();
+void printError(const char *message);
+void printSuccess(const char *message);
+void printWarning(const char *message);
+void printInfo(const char *message);
+int findNodeByName(struct Graph *graph, const char *name);
+void printLocations(struct Graph *graph);
+void printHospitalDetails(struct Hospital *hospital);
+void printAmbulanceDetails(int id, const char *location, int distance);
+void printMap(struct Graph *graph);
+void simulateEmergency(struct Graph *graph, int ambulances[], int numAmbulances, struct Hospital *hospitalRoot);
+void displaySystemStatus(struct Graph *graph, int ambulances[], int numAmbulances, struct Hospital *hospitalRoot);
+void initializeSystem(struct Graph **graph, int **ambulances, int *numAmbulances, struct Hospital **hospitalRoot);
+
+// ----------------------------- GRAPH FUNCTIONS -----------------------------
+struct Graph *createGraph(int V, struct Location *locations)
 {
     struct Graph *graph = (struct Graph *)malloc(sizeof(struct Graph));
     graph->V = V;
+    graph->locations = (struct Location *)malloc(V * sizeof(struct Location));
+    memcpy(graph->locations, locations, V * sizeof(struct Location));
     graph->array = (struct AdjList *)malloc(V * sizeof(struct AdjList));
     for (int i = 0; i < V; ++i)
         graph->array[i].head = NULL;
@@ -59,21 +118,16 @@ void addEdge(struct Graph *graph, int src, int dest, int weight)
     graph->array[dest].head = node;
 }
 
-// ----------------------------- MIN HEAP FOR DIJKSTRA -----------------------------
-struct MinHeapNode
+struct AdjListNode *newAdjListNode(int dest, int weight)
 {
-    int v;
-    int dist;
-};
+    struct AdjListNode *newNode = (struct AdjListNode *)malloc(sizeof(struct AdjListNode));
+    newNode->dest = dest;
+    newNode->weight = weight;
+    newNode->next = NULL;
+    return newNode;
+}
 
-struct MinHeap
-{
-    int size;
-    int capacity;
-    int *pos;
-    struct MinHeapNode **array;
-};
-
+// ----------------------------- MIN HEAP FUNCTIONS -----------------------------
 struct MinHeapNode *newMinHeapNode(int v, int dist)
 {
     struct MinHeapNode *node = (struct MinHeapNode *)malloc(sizeof(struct MinHeapNode));
@@ -192,23 +246,13 @@ void dijkstra(struct Graph *graph, int src, int dist[])
     }
 }
 
-// ----------------------------- HOSPITAL STRUCTURE -----------------------------
-struct Hospital
-{
-    int id;
-    char name[MAX_NAME_LENGTH];
-    int distance;
-    int availableBeds;
-    int availableDoctors;
-    struct Hospital *left;
-    struct Hospital *right;
-};
-
-struct Hospital *newHospitalNode(int id, const char *name, int distance, int beds, int doctors)
+// ----------------------------- HOSPITAL FUNCTIONS -----------------------------
+struct Hospital *newHospitalNode(int id, const char *name, const char *city, int distance, int beds, int doctors)
 {
     struct Hospital *hospital = (struct Hospital *)malloc(sizeof(struct Hospital));
     hospital->id = id;
     snprintf(hospital->name, MAX_NAME_LENGTH, "%s", name);
+    snprintf(hospital->city, MAX_NAME_LENGTH, "%s", city);
     hospital->distance = distance;
     hospital->availableBeds = beds;
     hospital->availableDoctors = doctors;
@@ -216,14 +260,14 @@ struct Hospital *newHospitalNode(int id, const char *name, int distance, int bed
     return hospital;
 }
 
-struct Hospital *insertHospital(struct Hospital *root, int id, const char *name, int distance, int beds, int doctors)
+struct Hospital *insertHospital(struct Hospital *root, int id, const char *name, const char *city, int distance, int beds, int doctors)
 {
     if (root == NULL)
-        return newHospitalNode(id, name, distance, beds, doctors);
+        return newHospitalNode(id, name, city, distance, beds, doctors);
     if (distance < root->distance)
-        root->left = insertHospital(root->left, id, name, distance, beds, doctors);
+        root->left = insertHospital(root->left, id, name, city, distance, beds, doctors);
     else
-        root->right = insertHospital(root->right, id, name, distance, beds, doctors);
+        root->right = insertHospital(root->right, id, name, city, distance, beds, doctors);
     return root;
 }
 
@@ -262,6 +306,7 @@ void printFooter()
     printf("====================================================\n");
     printf("\033[0m"); // Reset color
 }
+
 void printError(const char *message)
 {
     printf("\033[1;31m"); // Red color
@@ -286,8 +331,30 @@ void printWarning(const char *message)
 void printInfo(const char *message)
 {
     printf("\033[1;36m"); // Cyan color
-    printf("ℹ %s\n", message);
+    printf(" %s\n", message);
     printf("\033[0m"); // Reset color
+}
+
+int findNodeByName(struct Graph *graph, const char *name)
+{
+    for (int i = 0; i < graph->V; i++)
+    {
+        if (strcasecmp(graph->locations[i].name, name) == 0)
+        {
+            return graph->locations[i].node;
+        }
+    }
+    return -1; // Not found
+}
+
+void printLocations(struct Graph *graph)
+{
+    printf("\nAvailable Locations:\n");
+    for (int i = 0; i < graph->V; i++)
+    {
+        printf("- %s\n", graph->locations[i].name);
+    }
+    printf("\n");
 }
 
 void printHospitalDetails(struct Hospital *hospital)
@@ -298,20 +365,20 @@ void printHospitalDetails(struct Hospital *hospital)
     printf("\033[1;35m"); // Magenta color
     printf(" Hospital Details:\n");
     printf("\033[0m"); // Reset color
-    printf("  ID: %d\n", hospital->id);
     printf("  Name: %s\n", hospital->name);
+    printf("  City: %s\n", hospital->city);
     printf("  Distance: %d units\n", hospital->distance);
     printf("  Available Beds: %d\n", hospital->availableBeds);
     printf("  Available Doctors: %d\n", hospital->availableDoctors);
 }
 
-void printAmbulanceDetails(int id, int location, int distance)
+void printAmbulanceDetails(int id, const char *location, int distance)
 {
     printf("\033[1;35m"); // Magenta color
     printf(" Ambulance Details:\n");
     printf("\033[0m"); // Reset color
     printf("  ID: %d\n", id);
-    printf("  Current Location: Node %d\n", location);
+    printf("  Current Location: %s\n", location);
     printf("  Distance to Emergency: %d units\n", distance);
 }
 
@@ -320,26 +387,24 @@ void printMap(struct Graph *graph)
     printf("\033[1;36m"); // Cyan color
     printf("\nCity Map Layout:\n");
     printf("\033[0m"); // Reset color
-    printf("Locations and connections:\n");
-    printf("0 - City Center\n");
-    printf("1 - Downtown\n");
-    printf("2 - Business District\n");
-    printf("3 - Residential Area A\n");
-    printf("4 - Hospital Zone\n");
-    printf("5 - Shopping District\n");
-    printf("6 - Suburb West\n");
-    printf("7 - Suburb East\n");
-    printf("8 - Industrial Area\n");
-    printf("\nKey connections with distances:\n");
+    printf("Locations:\n");
+    for (int i = 0; i < graph->V; i++)
+    {
+        printf("- %s\n", graph->locations[i].name);
+    }
 
+    printf("\nKey connections with distances:\n");
     for (int i = 0; i < graph->V; ++i)
     {
         struct AdjListNode *node = graph->array[i].head;
         while (node != NULL)
         {
             if (i < node->dest)
-            { // To avoid printing duplicates
-                printf("Node %d <-> Node %d: %d units\n", i, node->dest, node->weight);
+            {
+                printf("%s <-> %s: %d units\n",
+                       graph->locations[i].name,
+                       graph->locations[node->dest].name,
+                       node->weight);
             }
             node = node->next;
         }
@@ -354,27 +419,25 @@ void simulateEmergency(struct Graph *graph, int ambulances[], int numAmbulances,
 
     printf("\n Please enter emergency details:\n");
 
-    int emergencyLocation;
+    char emergencyLocation[MAX_NAME_LENGTH];
+    int nodeLocation = -1;
+
     while (1)
     {
-        printf("Emergency location (0-8, or -1 to exit): ");
-        if (scanf("%d", &emergencyLocation) != 1)
-        {
-            printError("Invalid input. Please enter a number.");
-            while (getchar() != '\n')
-                ; // Clear input buffer
-            continue;
-        }
+        printLocations(graph);
+        printf("Emergency location name (or type 'exit' to cancel): ");
+        scanf("%s", emergencyLocation);
 
-        if (emergencyLocation == -1)
+        if (strcasecmp(emergencyLocation, "exit") == 0)
         {
             printInfo("Operation cancelled by user.");
             return;
         }
 
-        if (emergencyLocation < 0 || emergencyLocation >= graph->V)
+        nodeLocation = findNodeByName(graph, emergencyLocation);
+        if (nodeLocation == -1)
         {
-            printError("Invalid location. Please enter a value between 0 and 8.");
+            printError("Location not found. Please try again.");
             continue;
         }
         break;
@@ -385,27 +448,29 @@ void simulateEmergency(struct Graph *graph, int ambulances[], int numAmbulances,
     scanf("%s", emergencyType);
 
     // Find nearest ambulance
-    int minDist = INT_MAX, nearestAmbulance = -1, ambulanceDist[graph->V];
+    int minDist = INT_MAX, nearestAmbulanceNode = -1, ambulanceIndex = -1;
     for (int i = 0; i < numAmbulances; ++i)
     {
         int dist[graph->V];
         dijkstra(graph, ambulances[i], dist);
-        if (dist[emergencyLocation] < minDist)
+        if (dist[nodeLocation] < minDist)
         {
-            minDist = dist[emergencyLocation];
-            nearestAmbulance = ambulances[i];
+            minDist = dist[nodeLocation];
+            nearestAmbulanceNode = ambulances[i];
+            ambulanceIndex = i;
         }
-        ambulanceDist[i] = dist[emergencyLocation];
     }
 
     clearScreen();
     printHeader();
 
-    printf("\n EMERGENCY ALERT \n");
+    printf("\n EMERGENCY ALERT  \n");
     printf("Type: %s\n", emergencyType);
-    printf("Location: Node %d\n\n", emergencyLocation);
+    printf("Location: %s\n\n", emergencyLocation);
 
-    printAmbulanceDetails(0, nearestAmbulance, minDist);
+    char ambulanceLocation[MAX_NAME_LENGTH];
+    strcpy(ambulanceLocation, graph->locations[nearestAmbulanceNode].name);
+    printAmbulanceDetails(ambulanceIndex + 1, ambulanceLocation, minDist);
 
     // Find nearest available hospital
     struct Hospital *nearestHospital = findNearestAvailableHospital(hospitalRoot);
@@ -416,15 +481,15 @@ void simulateEmergency(struct Graph *graph, int ambulances[], int numAmbulances,
 
         // Calculate route to hospital
         int hospitalDist[graph->V];
-        dijkstra(graph, emergencyLocation, hospitalDist);
+        dijkstra(graph, nodeLocation, hospitalDist);
         int distanceToHospital = hospitalDist[nearestHospital->id];
 
         printf("\n Dispatch Summary:\n");
         printf("  Emergency Type: %s\n", emergencyType);
-        printf("  Emergency Location: Node %d\n", emergencyLocation);
-        printf("  Nearest Ambulance: Node %d\n", nearestAmbulance);
+        printf("  Emergency Location: %s\n", emergencyLocation);
+        printf("  Nearest Ambulance: %s (ID: %d)\n", ambulanceLocation, ambulanceIndex + 1);
         printf("  Ambulance Distance: %d units\n", minDist);
-        printf("  Assigned Hospital: %s (Node %d)\n", nearestHospital->name, nearestHospital->id);
+        printf("  Assigned Hospital: %s (%s)\n", nearestHospital->name, nearestHospital->city);
         printf("  Hospital Distance: %d units\n", distanceToHospital);
         printf("  Estimated Total Time: %d units\n", minDist + distanceToHospital);
 
@@ -463,7 +528,7 @@ void displaySystemStatus(struct Graph *graph, int ambulances[], int numAmbulance
     printf("\033[0m"); // Reset color
     for (int i = 0; i < numAmbulances; i++)
     {
-        printf("Ambulance %d: Node %d\n", i + 1, ambulances[i]);
+        printf("Ambulance %d: %s\n", i + 1, graph->locations[ambulances[i]].name);
     }
 
     // Display hospital status
@@ -485,7 +550,8 @@ void displaySystemStatus(struct Graph *graph, int ambulances[], int numAmbulance
         }
         current = stack[top--];
 
-        printf("Hospital %d: %s\n", current->id, current->name);
+        printf("Hospital: %s\n", current->name);
+        printf("  City: %s\n", current->city);
         printf("  Distance: %d units\n", current->distance);
         printf("  Available Beds: %d\n", current->availableBeds);
         printf("  Available Doctors: %d\n\n", current->availableDoctors);
@@ -506,42 +572,52 @@ void displaySystemStatus(struct Graph *graph, int ambulances[], int numAmbulance
 
 void initializeSystem(struct Graph **graph, int **ambulances, int *numAmbulances, struct Hospital **hospitalRoot)
 {
-    // Create city graph
-    *graph = createGraph(9);
+    // Define Uttarakhand cities as locations
+    struct Location locations[9] = {
+        {0, "Dehradun"},
+        {1, "Haridwar"},
+        {2, "Rishikesh"},
+        {3, "Mussoorie"},
+        {4, "Nainital"},
+        {5, "Almora"},
+        {6, "Ranikhet"},
+        {7, "Haldwani"},
+        {8, "Pauri"}};
 
-    addEdge(*graph, 0, 1, 4);  // City Center - Downtown
-    addEdge(*graph, 0, 7, 8);  // City Center - Suburb East
-    addEdge(*graph, 1, 2, 8);  // Downtown - Business District
-    addEdge(*graph, 1, 7, 11); // Downtown - Suburb East
-    addEdge(*graph, 2, 3, 7);  // Business District - Residential Area A
-    addEdge(*graph, 2, 8, 2);  // Business District - Industrial Area
-    addEdge(*graph, 2, 5, 4);  // Business District - Shopping District
-    addEdge(*graph, 3, 4, 9);  // Residential Area A - Hospital Zone
-    addEdge(*graph, 3, 5, 14); // Residential Area A - Shopping District
-    addEdge(*graph, 4, 5, 10); // Hospital Zone - Shopping District
-    addEdge(*graph, 5, 6, 2);  // Shopping District - Suburb West
-    addEdge(*graph, 6, 7, 1);  // Suburb West - Suburb East
-    addEdge(*graph, 6, 8, 6);  // Suburb West - Industrial Area
-    addEdge(*graph, 7, 8, 7);  // Suburb East - Industrial Area
+    // Create city graph with Uttarakhand locations
+    *graph = createGraph(9, locations);
 
-    // Initialize ambulances
+    // Connect cities with approximate distances (in km)
+    addEdge(*graph, 0, 1, 55);  // Dehradun - Haridwar
+    addEdge(*graph, 0, 2, 45);  // Dehradun - Rishikesh
+    addEdge(*graph, 0, 3, 35);  // Dehradun - Mussoorie
+    addEdge(*graph, 1, 2, 25);  // Haridwar - Rishikesh
+    addEdge(*graph, 2, 3, 40);  // Rishikesh - Mussoorie
+    addEdge(*graph, 4, 5, 65);  // Nainital - Almora
+    addEdge(*graph, 4, 7, 35);  // Nainital - Haldwani
+    addEdge(*graph, 5, 6, 50);  // Almora - Ranikhet
+    addEdge(*graph, 6, 8, 70);  // Ranikhet - Pauri
+    addEdge(*graph, 7, 8, 90);  // Haldwani - Pauri
+    addEdge(*graph, 0, 8, 120); // Dehradun - Pauri
+    addEdge(*graph, 3, 6, 100); // Mussoorie - Ranikhet
+
+    // Initialize ambulances in major cities
     *numAmbulances = NUM_AMBULANCES;
     *ambulances = (int *)malloc(*numAmbulances * sizeof(int));
-    (*ambulances)[0] = 0; // City Center
-    (*ambulances)[1] = 2; // Business District
-    (*ambulances)[2] = 4; // Hospital Zone
-    (*ambulances)[3] = 6; // Suburb West
-    (*ambulances)[4] = 8; // Industrial Area
+    (*ambulances)[0] = 0; // Dehradun
+    (*ambulances)[1] = 1; // Haridwar
+    (*ambulances)[2] = 4; // Nainital
+    (*ambulances)[3] = 5; // Almora
+    (*ambulances)[4] = 7; // Haldwani
 
-    // Initialize hospitals
+    // Initialize hospitals in Uttarakhand cities
     *hospitalRoot = NULL;
-    *hospitalRoot = insertHospital(*hospitalRoot, 0, "City General Hospital", 5, 5, 3);
-    *hospitalRoot = insertHospital(*hospitalRoot, 1, "Downtown Medical Center", 10, 3, 2);
-    *hospitalRoot = insertHospital(*hospitalRoot, 2, "Westside Trauma Center", 15, 4, 3);
-    *hospitalRoot = insertHospital(*hospitalRoot, 3, "Eastside Children's Hospital", 8, 2, 1);
-    *hospitalRoot = insertHospital(*hospitalRoot, 4, "Metropolitan Specialty Clinic", 12, 1, 1);
+    *hospitalRoot = insertHospital(*hospitalRoot, 0, "AIIMS Rishikesh", "Rishikesh", 45, 10, 8);
+    *hospitalRoot = insertHospital(*hospitalRoot, 1, "Doon Hospital", "Dehradun", 0, 15, 12);
+    *hospitalRoot = insertHospital(*hospitalRoot, 2, "B.D. Pandey Hospital", "Nainital", 0, 8, 6);
+    *hospitalRoot = insertHospital(*hospitalRoot, 3, "Base Hospital", "Almora", 0, 5, 4);
+    *hospitalRoot = insertHospital(*hospitalRoot, 4, "Sushila Tiwari Hospital", "Haldwani", 0, 12, 9);
 }
-
 // ----------------------------- MAIN FUNCTION -----------------------------
 int main()
 {
@@ -604,7 +680,10 @@ int main()
 
     // Clean up memory
     free(ambulances);
-    // Note: In a real application, you would also need to free the graph and hospital tree
+    free(graph->locations);
+    free(graph->array);
+    free(graph);
+    // Note: Should also free the hospital tree in a complete implementation
 
     return 0;
 }
