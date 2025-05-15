@@ -643,8 +643,7 @@ int main()
         if (scanf("%d", &choice) != 1)
         {
             printError("Invalid input. Please enter a number.");
-            while (getchar() != '\n')
-                ;
+            while (getchar() != '\n');
             continue;
         }
 
