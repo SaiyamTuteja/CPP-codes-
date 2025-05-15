@@ -644,7 +644,7 @@ int main()
         {
             printError("Invalid input. Please enter a number.");
             while (getchar() != '\n')
-                ; // Clear input buffer
+                ;
             continue;
         }
 
