@@ -627,7 +627,6 @@ int main()
     struct Hospital *hospitalRoot = NULL;
 
     initializeSystem(&graph, &ambulances, &numAmbulances, &hospitalRoot);
-
     int choice;
     do
     {
