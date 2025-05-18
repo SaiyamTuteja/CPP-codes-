@@ -54,6 +54,31 @@ public:
             delete temp;
         }
     }
+    void DeletionAtTail()
+    {
+        if (head == nullptr)
+        {
+            return;
+        }
+        else if (head == tail)
+        {
+            delete head;
+            head = tail = nullptr;
+        }
+        else
+        {
+            Node *prev = head;
+            Node *temp = tail;
+            while (prev->next != tail)
+            {
+                prev = prev->next;
+            }
+            tail = prev;
+            tail->next = head;
+            temp->next = nullptr;
+            delete temp;
+        }
+    }
     void printcll()
     {
         if (head == nullptr)
@@ -80,9 +105,10 @@ int main()
     cl.insertionAThead(22);
     cl.insertionAThead(32);
     cl.insertionAThead(42);
-    cout<<"Before Deletion: ";
+    cout << "Before Deletion: ";
     cl.printcll();
-    cout<<"After Deletion: ";
-    cl.deltionAtHead();
+    cout << "After Deletion: ";
+    // cl.deltionAtHead();
+    cl.DeletionAtTail();
     cl.printcll();
 }
