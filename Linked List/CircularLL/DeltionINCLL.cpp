@@ -19,7 +19,7 @@ public:
     Node *head = nullptr;
     Node *tail = nullptr;
 
-    void insertionAThead(int data)
+    void insertionAtHead(int data)
     {
         Node *newNode = new Node(data);
         if (head == nullptr)
@@ -101,10 +101,10 @@ public:
 int main()
 {
     CircularLl cl;
-    cl.insertionAThead(12);
-    cl.insertionAThead(22);
-    cl.insertionAThead(32);
-    cl.insertionAThead(42);
+    cl.insertionAtHead(12);
+    cl.insertionAtHead(22);
+    cl.insertionAtHead(32);
+    cl.insertionAtHead(42);
     cout << "Before Deletion: ";
     cl.printcll();
     cout << "After Deletion: ";
