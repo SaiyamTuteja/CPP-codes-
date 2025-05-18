@@ -18,7 +18,22 @@ class CircularLl
 public:
     Node *head = nullptr;
     Node *tail = nullptr;
-    void 
+
+    void insertionAThead(int data)
+    {
+        Node *newNode = new Node(data);
+        if (head == nullptr)
+        {
+            head = tail = newNode;
+            tail->next = newNode;
+        }
+        else
+        {
+            newNode->next = head;
+            head = newNode;
+            tail->next = head;
+        }
+    }
     void deltionAtHead()
     {
         if (head == nullptr)
@@ -39,8 +54,35 @@ public:
             delete temp;
         }
     }
+    void printcll()
+    {
+        if (head == nullptr)
+        {
+            cout << "There is no node avalable ";
+            return;
+        }
+        Node *temp = head;
+        cout << temp->data << " ->";
+        temp = head->next;
+        while (temp != head)
+        {
+            cout << temp->data << " ->";
+            temp = temp->next;
+        }
+        cout << temp->data << endl;
+    }
 };
 
 int main()
 {
+    CircularLl cl;
+    cl.insertionAThead(12);
+    cl.insertionAThead(22);
+    cl.insertionAThead(32);
+    cl.insertionAThead(42);
+    cout<<"Before Deletion: ";
+    cl.printcll();
+    cout<<"After Deletion: ";
+    cl.deltionAtHead();
+    cl.printcll();
 }

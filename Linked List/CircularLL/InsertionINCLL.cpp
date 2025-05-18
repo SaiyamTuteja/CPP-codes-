@@ -76,8 +76,6 @@ public:
             tail = newNode;
         }
     }
-   
-    
 };
 
 int main()
@@ -93,11 +91,6 @@ int main()
     cll.insertAtTail(30);
     cll.insertAtTail(40);
     cll.insertAtTail(50);
-    cout << "Before Deletion  :";
-    cll.printll();
-    cll.deltionAtHead();
-
-    cout << "After Deletion  :";
     cll.printll();
     return 0;
 }
