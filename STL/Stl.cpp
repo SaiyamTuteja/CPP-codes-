@@ -136,13 +136,24 @@ void Llist()
     list<int> l;
     l.push_back(10);
     l.push_back(20);
+    l.push_back(30);
+    l.push_back(40);
+    cout << "The list is : ";
     for (auto it = l.begin(); it != l.end(); it++)
     {
         cout << *it << " ";
     }
-    cout << "Front of list is  : " << l.front() << " ";
+    cout << endl;
+    cout << "Front of list is  : " << l.front() << endl;
 
-    cout << "Back of list is  : " << l.back() << " ";
+    cout << "Back of list is  : " << l.back() << "\n";
+    cout << "Size of the List is : " << l.size() << endl;
+    cout << "Revers of list is : ";
+    l.reverse();
+    for (auto it = l.begin(); it != l.end(); it++)
+    {
+        cout << *it << " ";
+    }
 }
 
 int main()
