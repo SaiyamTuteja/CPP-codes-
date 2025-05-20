@@ -133,29 +133,85 @@ void vectors()
 }
 void Llist()
 {
+    // Create an empty list of integers
     list<int> l;
+
+    // Check if the list is empty initially
+    cout << "List is Empty or not : " << l.empty() << endl;
+
+    // Insert elements at the end of the list
     l.push_back(10);
     l.push_back(20);
     l.push_back(30);
     l.push_back(40);
+
+    // Insert element at the end using emplace_back (constructs in-place)
+    l.emplace_back(02); // 02 is treated as 2
+
+    // Insert element at the beginning using emplace_front
+    l.emplace_front(01); // 01 is treated as 1
+
+    // Check if the list is still empty
+    cout << "List is Empty or not : " << l.empty() << endl;
+
+    // Print all elements in the list
     cout << "The list is : ";
     for (auto it = l.begin(); it != l.end(); it++)
     {
         cout << *it << " ";
     }
     cout << endl;
-    cout << "Front of list is  : " << l.front() << endl;
 
+    // Print the first and last elements of the list
+    cout << "Front of list is  : " << l.front() << endl;
     cout << "Back of list is  : " << l.back() << "\n";
+
+    // Print the size of the list
     cout << "Size of the List is : " << l.size() << endl;
-    cout << "Revers of list is : ";
+
+    // Reverse the list and print it
+    cout << "Reverse of list is : ";
     l.reverse();
     for (auto it = l.begin(); it != l.end(); it++)
     {
         cout << *it << " ";
     }
-}
+    cout << endl;
 
+    // Print front and back after reversing
+    cout << "The front element is : " << l.front() << endl;
+    cout << "The back element is : " << l.back() << endl;
+
+    // Create a second list and swap it with the original list
+    list<int> l2;
+    l.swap(l2);
+
+    // After swap, l2 contains the elements from l
+    cout << "L2 list after swapping from l1 : ";
+    for (auto it = l2.begin(); it != l2.end(); it++)
+    {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    // l is now empty after the swap with l2
+    cout << "L1 list after swapping from l2 : ";
+    for (auto it = l.begin(); it != l.end(); it++)
+    {
+        cout << *it << " ";
+    }
+    cout << endl;
+
+    // Clear all elements from l (though it's already empty after the swap)
+    l.clear();
+
+    // Print l after clearing (no output expected)
+    cout << "After clearing the elements : ";
+    for (auto it = l.begin(); it != l.end(); it++)
+    {
+        cout << *it << " ";
+    }
+}
 int main()
 {
     // pairs();
