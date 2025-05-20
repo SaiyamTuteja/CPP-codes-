@@ -131,9 +131,20 @@ void vectors()
     }
     cout << endl;
 }
-void list(){
-    
+void Llist()
+{
+    list<int> l;
+    l.push_back(10);
+    l.push_back(20);
+    for (auto it = l.begin(); it != l.end(); it++)
+    {
+        cout << *it << " ";
+    }
+    cout << "Front of list is  : " << l.front() << " ";
+
+    cout << "Back of list is  : " << l.back() << " ";
 }
+
 int main()
 {
     // pairs();
@@ -141,5 +152,6 @@ int main()
     // Stacks();
     // Queues();
     // Sets();
+    Llist();
     return 0;
 }
