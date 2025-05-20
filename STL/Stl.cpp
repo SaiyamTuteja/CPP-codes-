@@ -131,6 +131,9 @@ void vectors()
     }
     cout << endl;
 }
+void list(){
+    
+}
 int main()
 {
     // pairs();
