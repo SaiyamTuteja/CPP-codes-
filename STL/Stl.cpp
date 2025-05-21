@@ -212,6 +212,61 @@ void Llist()
         cout << *it << " ";
     }
 }
+void PriorityQueue()
+{
+    priority_queue<int> pq;
+    pq.emplace(10);
+    pq.emplace(20);
+    pq.emplace(50);
+    pq.emplace(1000);
+    pq.emplace(230);
+    pq.push(300);
+    cout << " Max Heap is : ";
+    while (!pq.empty())
+    {
+        int a = pq.top();
+        cout << a << " ";
+        pq.pop();
+    }
+    cout << endl;
+    priority_queue<int, vector<int>, greater<int>> pq2;
+    pq2.emplace(10);
+    pq2.emplace(20);
+    pq2.emplace(50);
+    pq2.emplace(1000);
+    pq2.emplace(230);
+    pq2.push(300);
+    pq2.push(100);
+    cout << " Min Heap is : ";
+    while (!pq2.empty())
+    {
+        int a = pq2.top();
+        cout << a << " ";
+        pq2.pop();
+    }
+    cout << endl;
+
+    string str = "SaiyamTuteja";
+    map<char, int> freq;
+    for (char c : str)
+    {
+        freq[c]++;
+    }
+
+    priority_queue<pair<int, char>> pqchar;
+    for (auto &p : freq)
+    {
+        pqchar.push({p.second, p.first});
+    }
+    cout << "Char frequency of the string is in the descending order are : ";
+    while (!pqchar.empty())
+    {
+        cout << pqchar.top().second << " is " << pqchar.top().first << endl;
+        pqchar.pop();
+    }
+
+        cout << endl;
+}
 int main()
 {
     // pairs();
@@ -219,6 +274,7 @@ int main()
     // Stacks();
     // Queues();
     // Sets();
-    Llist();
+    // Llist();
+    PriorityQueue();
     return 0;
 }
