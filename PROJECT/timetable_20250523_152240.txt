@@ -1,0 +1,144 @@
+================================================================
+                        TIMETABLE DATA                            
+                  Saved on: Fri May 23 15:22:40 2025
+================================================================
+
+
+SECTION A TIMETABLE
+----------------------------------------------------------------
+Day   | Time          | Code     | Subject Name                             | Faculty
+----------------------------------------------------------------
+MON   | 11:05-12:00   | XMC201   | Career Skills-II                         | Mr. Digamber
+MON   | 10:10-11:05   | PBL      | PROJECT BASED LEARNING                   | -
+MON   | 8:55-9:50     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+MON   | 8:00-8:55     | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+----------------------------------------------------------------
+TUE   | 10:10-11:05   | TMC203   | Data Structures                          | Mr. Neeraj
+TUE   | 8:00-9:50     | PMC201   | ADBMS Laboratory                         | Sec. A (Lab 7)
+----------------------------------------------------------------
+WED   | 2:10-3:05     | PMC201   | ADBMS Laboratory                         | Sec. B (Lab 7)
+WED   | 12:00-12:55   | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+WED   | 11:05-12:00   | PDP PRACTICAL | PDP PRACTICAL                            | Ms. Sakshi
+WED   | 10:10-11:05   | TMC203   | Data Structures                          | Mr. Neeraj
+WED   | 8:55-9:50     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+WED   | 8:00-8:55     | XMC201   | Career Skills-II                         | Mr. Aanand
+----------------------------------------------------------------
+THU   | 10:10-11:05   | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+THU   | 8:00-9:50     | PMC202   | Advanced Java Programming Lab            | Sec. A (IoT Lab)
+----------------------------------------------------------------
+FRI   | 11:05-12:00   | PDP PRACTICAL | PDP PRACTICAL                            | Ms. Sakshi
+FRI   | 10:10-11:05   | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+FRI   | 8:55-9:50     | XMC201   | Career Skills-II                         | Mr. Aanand
+FRI   | 8:00-8:55     | TMC203   | Data Structures                          | Mr. Neeraj
+----------------------------------------------------------------
+SAT   | 12:55-1:50    | PMC203   | Data Structures Laboratory               | Sec. A (Lab 7)
+SAT   | 11:05-12:00   | PBL      | PROJECT BASED LEARNING                   | -
+----------------------------------------------------------------
+
+SECTION B TIMETABLE
+----------------------------------------------------------------
+Day   | Time          | Code     | Subject Name                             | Faculty
+----------------------------------------------------------------
+MON   | 11:05-12:00   | XMC201   | Career Skills-II                         | Mr. Digamber
+MON   | 10:10-11:05   | PBL      | PROJECT BASED LEARNING                   | -
+MON   | 8:55-9:50     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+MON   | 8:00-8:55     | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+----------------------------------------------------------------
+TUE   | 10:10-11:05   | TMC203   | Data Structures                          | Mr. Neeraj
+TUE   | 8:00-9:50     | PMC202   | Advanced Java Programming Lab            | Sec. B (IoT Lab)
+----------------------------------------------------------------
+WED   | 2:10-3:05     | PMC201   | ADBMS Laboratory                         | Sec. B (Lab 7)
+WED   | 12:00-12:55   | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+WED   | 11:05-12:00   | PDP PRACTICAL | PDP PRACTICAL                            | Ms. Sakshi
+WED   | 10:10-11:05   | TMC203   | Data Structures                          | Mr. Neeraj
+WED   | 8:55-9:50     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+WED   | 8:00-8:55     | XMC201   | Career Skills-II                         | Mr. Aanand
+----------------------------------------------------------------
+THU   | 10:10-11:05   | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+THU   | 8:00-9:50     | PMC203   | Data Structures Laboratory               | Sec. B (Lab 7)
+----------------------------------------------------------------
+FRI   | 11:05-12:00   | PDP PRACTICAL | PDP PRACTICAL                            | Ms. Sakshi
+FRI   | 10:10-11:05   | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+FRI   | 8:55-9:50     | XMC201   | Career Skills-II                         | Mr. Aanand
+FRI   | 8:00-8:55     | TMC203   | Data Structures                          | Mr. Neeraj
+----------------------------------------------------------------
+
+SECTION C TIMETABLE
+----------------------------------------------------------------
+Day   | Time          | Code     | Subject Name                             | Faculty
+----------------------------------------------------------------
+MON   | 11:05-12:00   | PBL      | PROJECT BASED LEARNING                   | -
+MON   | 10:10-11:05   | PBL      | PROJECT BASED LEARNING                   | -
+MON   | 8:55-9:50     | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+MON   | 8:00-8:55     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+----------------------------------------------------------------
+TUE   | 12:00-12:55   | PMC201   | ADBMS Laboratory                         | Sec. C (Lab 7)
+----------------------------------------------------------------
+WED   | 12:00-12:55   | PMC203   | Data Structures Laboratory               | Sec. C (IoT Lab)
+WED   | 11:05-12:00   | TMC203   | Data Structures                          | Mr. Neeraj
+WED   | 8:55-9:50     | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+WED   | 8:00-8:55     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+----------------------------------------------------------------
+THU   | 2:10-3:05     | PDP PRACTICAL | PDP PRACTICAL                            | Ms. Sakshi
+THU   | 12:00-12:55   | PMC202   | Advanced Java Programming Lab            | Sec. C (IoT Lab)
+THU   | 12:00-12:55   | PMC201   | ADBMS Laboratory                         | Sec. D (Lab 7)
+THU   | 11:05-12:00   | TMC203   | Data Structures                          | Mr. Neeraj
+THU   | 8:55-9:50     | XMC201   | Career Skills-II                         | Mr. Aanand
+THU   | 8:00-8:55     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+----------------------------------------------------------------
+FRI   | 12:00-12:55   | XMC201   | Career Skills-II                         | Mr. Vishal
+FRI   | 10:10-11:05   | TMC203   | Data Structures                          | Mr. Neeraj
+FRI   | 8:55-9:50     | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+FRI   | 8:00-8:55     | XMC201   | Career Skills-II                         | Mr. Aanand
+----------------------------------------------------------------
+
+SECTION D TIMETABLE
+----------------------------------------------------------------
+Day   | Time          | Code     | Subject Name                             | Faculty
+----------------------------------------------------------------
+MON   | 11:05-12:00   | PBL      | PROJECT BASED LEARNING                   | -
+MON   | 10:10-11:05   | PBL      | PROJECT BASED LEARNING                   | -
+MON   | 8:55-9:50     | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+MON   | 8:00-8:55     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+----------------------------------------------------------------
+TUE   | 2:10-3:05     | PMC203   | Data Structures Laboratory               | Sec. D (IoT Lab)
+TUE   | 12:00-12:55   | PMC202   | Advanced Java Programming Lab            | Sec. D (IoT Lab)
+----------------------------------------------------------------
+WED   | 11:05-12:00   | TMC203   | Data Structures                          | Mr. Neeraj
+WED   | 8:55-9:50     | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+WED   | 8:00-8:55     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+----------------------------------------------------------------
+THU   | 2:10-3:05     | PDP PRACTICAL | PDP PRACTICAL                            | Ms. Sakshi
+THU   | 12:00-12:55   | PMC202   | Advanced Java Programming Lab            | Sec. C (IoT Lab)
+THU   | 12:00-12:55   | PMC201   | ADBMS Laboratory                         | Sec. D (Lab 7)
+THU   | 11:05-12:00   | TMC203   | Data Structures                          | Mr. Neeraj
+THU   | 8:55-9:50     | XMC201   | Career Skills-II                         | Mr. Aanand
+THU   | 8:00-8:55     | TMC201   | Advanced Database Management Systems     | Dr. Udham Singh
+----------------------------------------------------------------
+FRI   | 12:00-12:55   | XMC201   | Career Skills-II                         | Mr. Vishal
+FRI   | 10:10-11:05   | TMC203   | Data Structures                          | Mr. Neeraj
+FRI   | 8:55-9:50     | TMC202   | Advanced Java Programming                | Mr. Amit Juyal
+FRI   | 8:00-8:55     | XMC201   | Career Skills-II                         | Mr. Aanand
+----------------------------------------------------------------
+
+
+SUBJECT LEGEND:
+----------------------------------------------------------------
+Code     | Subject Name                             | Type
+----------------------------------------------------------------
+TMC201   | Advanced Database Management Systems     | Theory
+TMC202   | Advanced Java Programming                | Theory
+TMC203   | Data Structures                          | Theory
+TMC215   | DSE-II: Human-Computer Interaction       | Theory
+TMC221   | GE-I: Research Methodology               | Theory
+XMC201   | Career Skills-II                         | Theory
+PMC201   | ADBMS Laboratory                         | Lab
+PMC202   | Advanced Java Programming Lab            | Lab
+PMC203   | Data Structures Laboratory               | Lab
+GP201    | General Proficiency                      | Theory
+PBL      | PROJECT BASED LEARNING                   | Theory
+----------------------------------------------------------------
+
+================================================================
+                          END OF DATA                             
+================================================================

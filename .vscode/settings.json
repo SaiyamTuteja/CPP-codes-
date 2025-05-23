@@ -3,6 +3,7 @@
     "*.embeddedhtml": "html",
     "iostream": "cpp",
     "valarray": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "DEMO.C": "cpp"
   }
 }
