@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -11,5 +11,5 @@ int main()
     cout << "Enter the value of m: ";
     cin >> m;
     cout << "Sum of " << n << " and " << m << " is " << n + m;
-    return 0;
-=======
+return 0;
+}
