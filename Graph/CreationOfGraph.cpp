@@ -28,4 +28,14 @@ void PrintAdjacancyList(vector<int> adj[size + 1])
 int main()
 {
     int n, m;
+    cout << "Emter the edges : ";
+    cin >> n;
+    cout << "Enter the vertexs : ";
+    cin >> m;
+    int adj[n][m];
+    for (int i = 0; i < m; i++)
+    {
+        int u, v;
+        cin >> u >> V;
+    }
 }
