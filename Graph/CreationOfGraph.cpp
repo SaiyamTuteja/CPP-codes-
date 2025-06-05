@@ -27,4 +27,5 @@ void PrintAdjacancyList(vector<int> adj[size + 1])
 
 int main()
 {
+    int n, m;
 }
