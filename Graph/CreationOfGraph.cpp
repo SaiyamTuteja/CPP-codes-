@@ -70,6 +70,5 @@ Sample Input
         Enter 3 edges (as pairs of vertices u v):
         0 1
         1 2
-
         2 3
 */
