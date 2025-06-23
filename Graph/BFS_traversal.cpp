@@ -4,9 +4,11 @@ using namespace std;
 int vistied[10] = {0};
 int graph[10][10] = {};
 queue<int> q1;
-void BFS_Traversal(vector<int> visited, int N)
+void BFS_Traversal(int start)
 {
+
     q1.push(start);
+    vistied[start] = 1;
 }
 int main()
 {
