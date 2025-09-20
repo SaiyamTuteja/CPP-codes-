@@ -51,5 +51,4 @@ print("\nFlattened array 'a' (ravel):\n", a.ravel())
 print("\nExponential of all elements in 'a':\n", np.exp(a))
 print("Natural log of all elements in 'a':\n", np.log(a))
 
-# this is demo 
 
