@@ -11,8 +11,11 @@ public:
         data = val;
         left = right = NULL;
     }
-
-    static void inorder(Node *root)
+};
+class Tree
+{
+public:
+    void inorder(Node *root)
     {
         if (root == nullptr)
             return;
@@ -20,7 +23,7 @@ public:
         cout << root->data << " ";
         inorder(root->right);
     }
-    static void preorder(Node *root)
+    void preorder(Node *root)
     {
         if (root == nullptr)
             return;
@@ -28,7 +31,7 @@ public:
         preorder(root->left);
         preorder(root->right);
     }
-    static void postorder(Node *root)
+    void postorder(Node *root)
     {
         if (root == nullptr)
             return;
@@ -36,7 +39,7 @@ public:
         postorder(root->right);
         cout << root->data << " ";
     }
-    static int CountNodes(Node *root)
+    int CountNodes(Node *root)
     {
 
         if (root == NULL)
@@ -45,7 +48,7 @@ public:
         int rightCount = CountNodes(root->right);
         return leftCount + rightCount + 1;
     }
-    static Node *insertNode(Node *root, int data)
+    Node *insertNode(Node *root, int data)
     {
         if (root == nullptr)
         {
@@ -65,13 +68,12 @@ public:
 
 int main()
 {
-    // int data;
-    // Node obj(data);
+    Tree obj;
     Node *root = nullptr;
     int values[] = {10, 20, 30, 40, 50, 60, 90, 30, 50, 60};
     for (int val : values)
     {
-        root = Node::insertNode(root, val);
+        root = obj.insertNode(root, val);
     }
-    cout << "Total nodes: " << Node::CountNodes(root) << endl;
+    cout << "Total nodes: " << obj.CountNodes(root) << endl;
 }
