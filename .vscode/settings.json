@@ -4,6 +4,7 @@
     "iostream": "cpp",
     "valarray": "cpp",
     "ostream": "cpp",
-    "DEMO.C": "cpp"
+    "DEMO.C": "cpp",
+    "string": "cpp"
   }
 }
